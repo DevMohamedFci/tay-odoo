@@ -1,0 +1,215 @@
+<odoo>
+  <data>
+    <!-- QWeb Reports -->
+    <!-- NAME & FILE_NAME should be the same -->
+
+
+      <!--start report of Journal Transaction Report report-->
+              <record id="account_journalcartreport_view" model="ir.ui.view">
+                <field name="name">account_journalcartreport_view</field>
+                <field name="model">account.journalcartreport</field>
+                <field name="arch" type="xml">
+                    <form string="Report Options">
+                        <separator string="journal cart report"/>
+                        <label string="journal cart report "/>
+                        <group>
+                              <field name="account_move" domain="['|',('type','like','cash'),('type','like','bank')]" 
+options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}"/>
+                            <newline/>
+
+                        </group>
+                         <group col="4">
+                            <field name="date_from"/>
+                            <field name="date_end"/>
+                            <newline/>
+
+                        </group>
+
+                        <footer>
+                            <button name="print_report" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+                            or
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+                        </footer>
+                    </form>
+                </field>
+            </record>
+              <record id="action_account_journalcartreport_view" model="ir.actions.act_window">
+                <field name="name">journalcartreport</field>
+                <field name="res_model">account.journalcartreport</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="account_journalcartreport_view"/>
+                <field name="context">{}</field>
+                <field name="target">new</field>
+            </record>
+              <menuitem icon="STOCK_PRINT" id="menu_productreport"
+                name="journal cart report"
+                action="action_account_journalcartreport_view"
+                parent="account.menu_finance_legal_statement"/>
+              <report
+                    id="account_journalcartreport_action"
+                    model="account.journalcartreport"
+                    report_type="qweb-html"
+                    string="journal cart report"
+                    name="tay_account.report_journalcartreport"
+                    file="tay_account.report_journalcartreport"
+            />
+      <!--end report of Journal Transaction Report report-->
+
+      <!--start report of Customer Transaction Report report-->
+              <record id="account_vendortransactionreport_view" model="ir.ui.view">
+                <field name="name">account_cutomertransactionreport_view</field>
+                <field name="model">account.cutomertransactionreport</field>
+                <field name="arch" type="xml">
+                    <form string="Report Options">
+                        <separator string="Customer transaction report"/>
+                        <label string="Customer Transaction report "/>
+                        <group>
+                              <field name="account_Customer" domain="[('supplier','=','True')]"
+options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}"/>
+                            <newline/>
+
+                        </group>
+                         <group col="4">
+                            <field name="date_from"/>
+                            <field name="date_end"/>
+                            <newline/>
+
+                        </group>
+
+                        <footer>
+                            <button name="print_report" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+                            or
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+                        </footer>
+                    </form>
+                </field>
+            </record>
+              <record id="action_account_cutomertransactionreport_view" model="ir.actions.act_window">
+                <field name="name">CustomerTransactionReport</field>
+                <field name="res_model">account.cutomertransactionreport</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="account_cutomertransactionreport_view"/>
+                <field name="context">{}</field>
+                <field name="target">new</field>
+            </record>
+              <menuitem icon="STOCK_PRINT" id="menu_customertransactionreport"
+                name="Customer Transaction report"
+                action="action_account_cutomertransactionreport_view"
+                parent="account.menu_finance_legal_statement"/>
+
+                  <record id="account_cutomertransactionreport_view" model="ir.ui.view">
+                <field name="name">account_cutomertransactionreport_view</field>
+                <field name="model">account.cutomertransactionreport</field>
+                <field name="arch" type="xml">
+                    <form string="Report Options">
+                        <separator string="Customer transaction report"/>
+                        <label string="Customer Transaction report "/>
+                        <group>
+                              <field name="account_Customer" domain="[('customer','=','True')]"
+options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}"/>
+                            <newline/>
+
+                        </group>
+                         <group col="4">
+                            <field name="date_from"/>
+                            <field name="date_end"/>
+                            <newline/>
+
+                        </group>
+
+                        <footer>
+                            <button name="print_report" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+                            or
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+                        </footer>
+                    </form>
+                </field>
+            </record>
+                <record id="action_account_vendortransactionreport_view" model="ir.actions.act_window">
+                <field name="name">CustomerTransactionReport</field>
+                <field name="res_model">account.cutomertransactionreport</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="account_vendortransactionreport_view"/>
+                <field name="context">{}</field>
+                <field name="target">new</field>
+            </record>
+               <menuitem icon="STOCK_PRINT" id="menu_vendortransactionreport"
+                name="Vendor Transaction report"
+                action="action_account_vendortransactionreport_view"
+                parent="account.menu_finance_legal_statement"/>
+              <report
+                    id="account_customertransactionreport_action"
+                    model="account.cutomertransactionreport"
+                    report_type="qweb-html"
+                    string="Customer Transactions report"
+                    name="tay_account.report_cutomertransactionreport"
+                    file="tay_account.report_cutomertransactionreport"
+            />
+      <!--end report of Customer Transaction Report report-->
+
+
+
+
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="tay_account.list">
+      <field name="name">tay_account list</field>
+      <field name="model">tay_account.tay_account</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="tay_account.action_window">
+      <field name="name">tay_account window</field>
+      <field name="res_model">tay_account.tay_account</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="tay_account.action_server">
+      <field name="name">tay_account server</field>
+      <field name="model_id" ref="model_leadreport_leadreport"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="tay_account" id="tay_account.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="tay_account.menu_1" parent="tay_account.menu_root"/>
+    <menuitem name="Menu 2" id="tay_account.menu_2" parent="tay_account.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="tay_account.menu_1_list" parent="tay_account.menu_1"
+              action="tay_account.action_window"/>
+    <menuitem name="Server to list" id="tay_account" parent="tay_account.menu_2"
+              action="tay_account.action_server"/>
+    -->
+  </data>
+</odoo>
